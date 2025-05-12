@@ -2,12 +2,18 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú</title>
+    <!-- Configuración de viewport para responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Menú Digital</title>
     <style>
+        /*
+        ******************************************************
+        * VARIABLES CSS - FÁCIL PERSONALIZACIÓN DEL DISEÑO *
+        ******************************************************
+        */
         :root {
             /* COLORES PRINCIPALES */
-            --bg-overlay: rgba(20, 20, 40, 0.85); /* Overlay oscuro sobre la imagen de fondo */
+            --bg-overlay: rgba(20, 20, 40, 0.85); /* Capa oscura sobre imagen de fondo */
             --menu-bg: rgba(255, 255, 255, 0.1); /* Fondo semitransparente del menú */
             --title-color: #fff; /* Color del título principal */
             --title-glow: #00f7ff; /* Color del efecto neón del título */
@@ -23,73 +29,106 @@
             /* EFECTOS Y ANIMACIONES */
             --hover-scale: 1.05; /* Escala al hacer hover */
             --flip-duration: 0.6s; /* Duración de la animación de volteo */
-            --glow-intensity: 25px; /* Intensidad del resplandor */
+            --glow-intensity: 15px; /* Intensidad del resplandor */
         }
 
         /* 
         **********************************************
-        * ESTILOS GENERALES *
+        * ESTILOS BASE Y RESET *
+        **********************************************
+        */
+        * {
+            box-sizing: border-box; /* Modelo de caja más intuitivo */
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 
+        **********************************************
+        * ESTILOS GENERALES DEL CUERPO *
         **********************************************
         */
         body {
             font-family: 'Arial', sans-serif;
             /* 
-            **********************************************
-            * IMAGEN DE FONDO - CAMBIAR URL AQUÍ *
-            **********************************************
+            ************************************
+            * IMAGEN DE FONDO - EDITAR URL AQUÍ *
+            ************************************
+            * Recomendación: Usar imagen en alta calidad
+            * con relación de aspecto 16:9 para mejor visualización
             */
             background: 
                 linear-gradient(var(--bg-overlay)),
                 url('https://cdn.pixabay.com/photo/2016/11/18/22/21/restaurant-1837150_1280.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
-            padding: 20px;
+            padding: 15px;
             margin: 0;
             min-height: 100vh;
-        }
-        
-        .menu-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: var(--menu-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        h1 {
-            text-align: center;
-            color: var(--title-color);
-            text-shadow: 0 0 10px var(--title-glow), 0 0 20px var(--title-glow);
-            margin-bottom: 30px;
+            -webkit-text-size-adjust: 100%; /* Evita zoom automático en iOS */
         }
         
         /* 
         **********************************************
-        * ESTILOS DE SECCIONES *
+        * CONTENEDOR PRINCIPAL DEL MENÚ *
+        **********************************************
+        * Diseño con efecto vidrio esmerilado (glassmorphism)
+        * y bordes redondeados para estilo moderno
+        */
+        .menu-container {
+            max-width: 1000px; /* Ancho máximo para pantallas grandes */
+            margin: 0 auto; /* Centrado horizontal */
+            padding: 20px;
+            background-color: var(--menu-bg);
+            backdrop-filter: blur(10px); /* Efecto de desenfoque */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+        
+        /* 
+        **********************************************
+        * TÍTULO PRINCIPAL *
+        **********************************************
+        * Con efecto neón y sombra para destacar
+        */
+        h1 {
+            text-align: center;
+            color: var(--title-color);
+            text-shadow: 0 0 10px var(--title-glow), 0 0 20px var(--title-glow);
+            margin-bottom: 25px;
+            font-size: 2.2rem; /* Tamaño responsivo */
+        }
+        
+        /* 
+        **********************************************
+        * ESTILOS DE SECCIONES (COMIDA/BEBIDAS) *
         **********************************************
         */
         .menu-section {
-            margin-bottom: 40px;
+            margin-bottom: 35px; /* Espaciado entre secciones */
         }
         
         .section-title {
             color: var(--section-title);
             border-bottom: 2px solid var(--section-title);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            font-size: 1.6rem; /* Tamaño responsivo */
         }
         
         /* 
         **********************************************
-        * CONTENEDOR DE PRODUCTOS *
+        * CONTENEDOR DE PRODUCTOS - SISTEMA DE GRID *
         **********************************************
+        * Uso de CSS Grid para disposición adaptable
+        * auto-fill: crea columnas según espacio disponible
+        * minmax: tamaño mínimo y máximo de cada columna
         */
         .items-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px; /* Espacio entre elementos */
             justify-content: center;
         }
         
@@ -97,18 +136,23 @@
         **********************************************
         * TARJETAS DE PRODUCTOS *
         **********************************************
+        * Diseño de tarjetas con efectos hover
+        * y bordes con efecto neón
         */
         .menu-item {
             background-color: var(--item-bg);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 15px;
-            width: 200px;
+            width: 100%;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px var(--item-glow);
+            box-shadow: 0 0 12px var(--item-glow);
             border: 2px solid var(--item-border);
+            margin: 0 auto;
+            cursor: pointer; /* Cambia el cursor para indicar interactividad */
         }
         
+        /* Efecto al pasar el mouse o tocar en móvil */
         .menu-item:hover {
             transform: scale(var(--hover-scale));
             box-shadow: 0 0 var(--glow-intensity) var(--item-glow);
@@ -116,48 +160,63 @@
         
         /* 
         **********************************************
-        * EFECTO FLIP (VOLTEO) *
+        * CONTENEDOR PARA EFECTO FLIP (VOLTEO) *
         **********************************************
+        * Perspectiva para efecto 3D
+        * Tamaño fijo para contener la imagen y descripción
         */
         .flip-container {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 10px;
-            perspective: 1000px; /* Controla la intensidad del efecto 3D */
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 12px;
+            perspective: 1000px; /* Profundidad del efecto 3D */
         }
         
+        /* 
+        **********************************************
+        * CONTENEDOR FLIPPER (FRENTE Y VUELTA) *
+        **********************************************
+        */
         .flipper {
             position: relative;
             width: 100%;
             height: 100%;
             transition: transform var(--flip-duration);
-            transform-style: preserve-3d;
+            transform-style: preserve-3d; /* Mantiene el contexto 3D */
         }
         
-        .menu-item:hover .flipper {
+        /* Efecto de volteo al interactuar */
+        .menu-item:hover .flipper,
+        .menu-item:active .flipper {
             transform: rotateY(180deg);
         }
         
+        /* 
+        **********************************************
+        * CARAS DEL FLIP (FRENTE Y VUELTA) *
+        **********************************************
+        */
         .front, .back {
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden;
-            border-radius: 8px;
+            backface-visibility: hidden; /* Oculta la cara posterior */
+            border-radius: 10px;
             background-color: #fff;
-            padding: 5px;
+            padding: 8px;
         }
         
+        /* Estilo específico para la parte trasera */
         .back {
             background-color: var(--desc-bg);
             color: white;
-            transform: rotateY(180deg);
+            transform: rotateY(180deg); /* Inicia volteada */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 10px;
-            font-size: 13px;
+            padding: 12px;
+            font-size: 14px;
             line-height: 1.4;
         }
         
@@ -165,6 +224,8 @@
         **********************************************
         * IMÁGENES DE PRODUCTOS *
         **********************************************
+        * object-fit: cover para mantener proporciones
+        * sin distorsión de la imagen
         */
         .item-image {
             width: 100%;
@@ -181,38 +242,117 @@
         .item-name {
             font-weight: bold;
             color: var(--text-dark);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
         
         .item-price {
             color: var(--price-color);
             font-weight: bold;
+            font-size: 18px;
         }
         
         .item-description {
             color: var(--text-gray);
             font-size: 14px;
-            margin-top: 5px;
+            margin-top: 8px;
         }
         
         /* 
-        **********************************************
-        * DISEÑO RESPONSIVE - MÓVILES *
-        **********************************************
+        ************************************************
+        * MEDIA QUERIES - DISEÑO RESPONSIVE *
+        ************************************************
+        * Breakpoints optimizados para diferentes tamaños
+        * de pantalla de smartphones y tablets
         */
+        
+        /* Tablet Pequeña y Smartphones Grandes (768px) */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .menu-container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .items-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .flip-container {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .back {
+                font-size: 13px;
+                padding: 10px;
+            }
+            
+            .item-name {
+                font-size: 15px;
+            }
+            
+            .item-price {
+                font-size: 16px;
+            }
+        }
+        
+        /* Smartphones Medianos (480px) */
+        @media (max-width: 480px) {
+            .items-container {
+                grid-template-columns: 1fr 1fr; /* 2 columnas */
+                gap: 12px;
+            }
+            
             .menu-item {
-                width: 150px;
+                padding: 12px;
             }
             
             .flip-container {
                 width: 120px;
                 height: 120px;
             }
+            
+            .back {
+                font-size: 12px;
+            }
+            
+            .item-name {
+                font-size: 14px;
+            }
+        }
+        
+        /* Smartphones Pequeños (360px) */
+        @media (max-width: 360px) {
+            .items-container {
+                grid-template-columns: 1fr; /* 1 columna */
+            }
+            
+            .flip-container {
+                width: 160px;
+                height: 160px; /* Más grande para mejor visibilidad */
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 
+    **********************************************
+    * CONTENEDOR PRINCIPAL *
+    **********************************************
+    -->
     <div class="menu-container">
         <h1>MENÚ PRINCIPAL</h1>
         
@@ -231,14 +371,16 @@
                         <div class="flipper">
                             <div class="front">
                                 <!-- 
-                                **********************************************
-                                * CAMBIAR IMAGEN DE HOT DOGS *
-                                **********************************************
+                                ************************************
+                                * IMAGEN DE HOT DOGS - EDITAR URL *
+                                ************************************
+                                * Recomendación: Imagen cuadrada (1:1)
+                                * en alta resolución (mínimo 500x500px)
                                 -->
                                 <img src="https://www.cinin.es/upload/stblog/1/14/25/1425large.jpg" alt="Hot Dogs" class="item-image">
                             </div>
                             <div class="back">
-                                Pan suave, salchicha, cebolla, tomate, jalapeños, mayonesa, mostaza, catsup
+                                Pan suave, salchicha, cebolla, jitomate, jalapeños, mayonesa, mostaza, catsup
                             </div>
                         </div>
                     </div>
@@ -252,14 +394,14 @@
                         <div class="flipper">
                             <div class="front">
                                 <!-- 
-                                **********************************************
-                                * CAMBIAR IMAGEN DE HAMBURGUESA SENCILLA *
-                                **********************************************
+                                ******************************************
+                                * IMAGEN DE HAMBURGUESA - EDITAR URL *
+                                ******************************************
                                 -->
                                 <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Sencilla" class="item-image">
                             </div>
                             <div class="back">
-                                Carne de res, pan fresco, lechuga, tomate, cebolla, mostaza, catsup
+                                Carne de res, pan fresco, aderezo, jitomate, jalapeños y cebolla
                             </div>
                         </div>
                     </div>
@@ -275,7 +417,7 @@
                                 <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa con Queso" class="item-image">
                             </div>
                             <div class="back">
-                                Carne de res, queso americano, pan fresco, lechuga, tomate, cebolla, mayonesa
+                                Carne de res, queso americano, pan fresco, aderezo, jitomate, jalapeños y cebolla
                             </div>
                         </div>
                     </div>
@@ -291,7 +433,7 @@
                                 <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Hawaiana" class="item-image">
                             </div>
                             <div class="back">
-                                Carne de res, jamón, piña, queso, pan fresco, lechuga, salsa agridulce
+                                Carne de res, jamón, piña, queso, pan fresco, aderezo, jitomate, jalapeños y cebolla
                             </div>
                         </div>
                     </div>
@@ -307,7 +449,7 @@
                                 <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Especial" class="item-image">
                             </div>
                             <div class="back">
-                                Doble carne, doble queso, tocino, huevo, aguacate, pan fresco, salsa especial
+                                Carne de res, jamón, queso americano, salchicha, pan fresco, aderezo, jitomate, jalapeños y cebolla
                             </div>
                         </div>
                     </div>
@@ -323,7 +465,7 @@
                                 <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Choriqueso" class="item-image">
                             </div>
                             <div class="back">
-                                Chorizo, queso fundido, carne de res, pan fresco, aguacate, salsa verde
+                                Chorizo, queso fundido, carne de res, pan fresco, aderezo, jitomate, jalapeños y cebolla
                             </div>
                         </div>
                     </div>
@@ -331,7 +473,7 @@
                     <div class="item-price">$35</div>
                 </div>
                 
-                <!-- Hamburguesa Doble Carne (NUEVA) -->
+                <!-- Hamburguesa Doble Carne -->
                 <div class="menu-item">
                     <div class="flip-container">
                         <div class="flipper">
@@ -339,7 +481,7 @@
                                 <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Doble Carne" class="item-image">
                             </div>
                             <div class="back">
-                                Dos jugosas carnes de res, queso, pan fresco, lechuga, tomate, cebolla, salsa BBQ
+                                Dos jugosas carnes de res, queso americano, pan fresco, aderezo, jitomate, jalapeños y cebolla
                             </div>
                         </div>
                     </div>
@@ -347,7 +489,7 @@
                     <div class="item-price">$44</div>
                 </div>
                 
-                <!-- Hamburguesa Triple Carne (NUEVA) -->
+                <!-- Hamburguesa Triple Carne -->
                 <div class="menu-item">
                     <div class="flip-container">
                         <div class="flipper">
@@ -355,13 +497,15 @@
                                 <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Triple Carne" class="item-image">
                             </div>
                             <div class="back">
-                                Tres carnes de res, triple queso, tocino, cebolla caramelizada, pan fresco, salsa especial
+                                Tres carnes de res, queso americano, pan fresco, aderezo, jitomate, jalapeños y cebolla
                             </div>
                         </div>
                     </div>
                     <div class="item-name">Hamburguesa c/triple carne</div>
                     <div class="item-price">$54</div>
                 </div>
+            </div>
+        </div>
         
         <!-- 
         **********************************************
@@ -377,9 +521,9 @@
                         <div class="flipper">
                             <div class="front">
                                 <!-- 
-                                **********************************************
-                                * CAMBIAR IMAGEN DE SODA ITALIANA *
-                                **********************************************
+                                ***************************************
+                                * IMAGEN DE SODA ITALIANA - EDITAR URL *
+                                ***************************************
                                 -->
                                 <img src="https://speedy.uenicdn.com/cca6ac97-8155-4cce-ac5b-37a9972ca3c7/c750_a/image/upload/v1592336639/business/350f09b3-975f-4121-9228-81e8eadd714b.jpg" alt="Soda Italiana" class="item-image">
                             </div>
@@ -398,9 +542,9 @@
                         <div class="flipper">
                             <div class="front">
                                 <!-- 
-                                **********************************************
-                                * CAMBIAR IMAGEN DE COCA COLA *
-                                **********************************************
+                                ************************************
+                                * IMAGEN DE COCA COLA - EDITAR URL *
+                                ************************************
                                 -->
                                 <img src="https://regiofarma.mx/wp-content/uploads/2023/09/e6770385-4e22-4fe8-9ec9-864260010187.jpg" alt="Coca Cola 600ml" class="item-image">
                             </div>
@@ -419,9 +563,9 @@
                         <div class="flipper">
                             <div class="front">
                                 <!-- 
-                                **********************************************
-                                * CAMBIAR IMAGEN DE JUGO BOING *
-                                **********************************************
+                                ***********************************
+                                * IMAGEN DE JUGO BOING - EDITAR URL *
+                                ***********************************
                                 -->
                                 <img src="https://www.digaar.com/admin_digaar/productos/345.jpg" alt="Jugo Boing" class="item-image">
                             </div>
@@ -440,9 +584,9 @@
                         <div class="flipper">
                             <div class="front">
                                 <!-- 
-                                **********************************************
-                                * CAMBIAR IMAGEN DE MICHELADA *
-                                **********************************************
+                                *************************************
+                                * IMAGEN DE MICHELADA - EDITAR URL *
+                                *************************************
                                 -->
                                 <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/26787066/1407384851.jpg" alt="Michelada" class="item-image">
                             </div>
@@ -461,9 +605,9 @@
                         <div class="flipper">
                             <div class="front">
                                 <!-- 
-                                **********************************************
-                                * CAMBIAR IMAGEN DE AZULITO *
-                                **********************************************
+                                ***********************************
+                                * IMAGEN DE AZULITO - EDITAR URL *
+                                ***********************************
                                 -->
                                 <img src="https://t3.ftcdn.net/jpg/06/18/89/82/240_F_618898203_eUh5Y75b7rijLKj4DtnU3KY2YzcZNlBS.jpg" alt="Azulito" class="item-image">
                             </div>
