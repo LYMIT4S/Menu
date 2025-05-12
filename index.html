@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú</title>
+    <style>
+        :root {
+            /* COLORES PRINCIPALES */
+            --bg-overlay: rgba(20, 20, 40, 0.85); /* Overlay oscuro sobre la imagen de fondo */
+            --menu-bg: rgba(255, 255, 255, 0.1); /* Fondo semitransparente del menú */
+            --title-color: #fff; /* Color del título principal */
+            --title-glow: #00f7ff; /* Color del efecto neón del título */
+            --section-title: #ff6b6b; /* Color de los títulos de sección */
+            --item-bg: white; /* Fondo de las tarjetas de productos */
+            --item-border: #00f7ff; /* Color del borde neón */
+            --item-glow: rgba(0, 255, 255, 0.5); /* Color del resplandor */
+            --price-color: #ff6b6b; /* Color de los precios */
+            --text-dark: #333; /* Color de texto oscuro */
+            --text-gray: #666; /* Color de texto gris */
+            --desc-bg: rgba(0, 0, 0, 0.8); /* Fondo de las descripciones */
+
+            /* EFECTOS Y ANIMACIONES */
+            --hover-scale: 1.05; /* Escala al hacer hover */
+            --flip-duration: 0.6s; /* Duración de la animación de volteo */
+            --glow-intensity: 25px; /* Intensidad del resplandor */
+        }
+
+        /* 
+        **********************************************
+        * ESTILOS GENERALES *
+        **********************************************
+        */
+        body {
+            font-family: 'Arial', sans-serif;
+            /* 
+            **********************************************
+            * IMAGEN DE FONDO - CAMBIAR URL AQUÍ *
+            **********************************************
+            */
+            background: 
+                linear-gradient(var(--bg-overlay)),
+                url('https://cdn.pixabay.com/photo/2016/11/18/22/21/restaurant-1837150_1280.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .menu-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--menu-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--title-color);
+            text-shadow: 0 0 10px var(--title-glow), 0 0 20px var(--title-glow);
+            margin-bottom: 30px;
+        }
+        
+        /* 
+        **********************************************
+        * ESTILOS DE SECCIONES *
+        **********************************************
+        */
+        .menu-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            color: var(--section-title);
+            border-bottom: 2px solid var(--section-title);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        
+        /* 
+        **********************************************
+        * CONTENEDOR DE PRODUCTOS *
+        **********************************************
+        */
+        .items-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        /* 
+        **********************************************
+        * TARJETAS DE PRODUCTOS *
+        **********************************************
+        */
+        .menu-item {
+            background-color: var(--item-bg);
+            border-radius: 10px;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--item-glow);
+            border: 2px solid var(--item-border);
+        }
+        
+        .menu-item:hover {
+            transform: scale(var(--hover-scale));
+            box-shadow: 0 0 var(--glow-intensity) var(--item-glow);
+        }
+        
+        /* 
+        **********************************************
+        * EFECTO FLIP (VOLTEO) *
+        **********************************************
+        */
+        .flip-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 10px;
+            perspective: 1000px; /* Controla la intensidad del efecto 3D */
+        }
+        
+        .flipper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform var(--flip-duration);
+            transform-style: preserve-3d;
+        }
+        
+        .menu-item:hover .flipper {
+            transform: rotateY(180deg);
+        }
+        
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            background-color: #fff;
+            padding: 5px;
+        }
+        
+        .back {
+            background-color: var(--desc-bg);
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        /* 
+        **********************************************
+        * IMÁGENES DE PRODUCTOS *
+        **********************************************
+        */
+        .item-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        /* 
+        **********************************************
+        * ESTILOS DE TEXTO *
+        **********************************************
+        */
+        .item-name {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .item-price {
+            color: var(--price-color);
+            font-weight: bold;
+        }
+        
+        .item-description {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        /* 
+        **********************************************
+        * DISEÑO RESPONSIVE - MÓVILES *
+        **********************************************
+        */
+        @media (max-width: 768px) {
+            .menu-item {
+                width: 150px;
+            }
+            
+            .flip-container {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <h1>MENÚ PRINCIPAL</h1>
+        
+        <!-- 
+        **********************************************
+        * SECCIÓN DE COMIDA *
+        **********************************************
+        -->
+        <div class="menu-section">
+            <h2 class="section-title">COMIDA</h2>
+            <div class="items-container">
+
+                <!-- Hot Dogs -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <!-- 
+                                **********************************************
+                                * CAMBIAR IMAGEN DE HOT DOGS *
+                                **********************************************
+                                -->
+                                <img src="https://www.cinin.es/upload/stblog/1/14/25/1425large.jpg" alt="Hot Dogs" class="item-image">
+                            </div>
+                            <div class="back">
+                                Pan suave, salchicha, cebolla, tomate, jalapeños, mayonesa, mostaza, catsup
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Hot Dogs</div>
+                    <div class="item-price">3x$25</div>
+                </div>
+
+                <!-- Hamburguesa Sencilla -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <!-- 
+                                **********************************************
+                                * CAMBIAR IMAGEN DE HAMBURGUESA SENCILLA *
+                                **********************************************
+                                -->
+                                <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Sencilla" class="item-image">
+                            </div>
+                            <div class="back">
+                                Carne de res, pan fresco, lechuga, tomate, cebolla, mostaza, catsup
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Hamburguesa sencilla</div>
+                    <div class="item-price">$25</div>
+                </div>
+                
+                <!-- Hamburguesa con Queso -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa con Queso" class="item-image">
+                            </div>
+                            <div class="back">
+                                Carne de res, queso americano, pan fresco, lechuga, tomate, cebolla, mayonesa
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Hamburguesa con queso</div>
+                    <div class="item-price">$28</div>
+                </div>
+                
+                <!-- Hamburguesa Hawaiana -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Hawaiana" class="item-image">
+                            </div>
+                            <div class="back">
+                                Carne de res, jamón, piña, queso, pan fresco, lechuga, salsa agridulce
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Hamburguesa hawaiana</div>
+                    <div class="item-price">$35</div>
+                </div>
+                
+                <!-- Hamburguesa Especial -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Especial" class="item-image">
+                            </div>
+                            <div class="back">
+                                Doble carne, doble queso, tocino, huevo, aguacate, pan fresco, salsa especial
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Hamburguesa especial</div>
+                    <div class="item-price">$35</div>
+                </div>
+
+                <!-- Choriqueso -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Choriqueso" class="item-image">
+                            </div>
+                            <div class="back">
+                                Chorizo, queso fundido, carne de res, pan fresco, aguacate, salsa verde
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Choriqueso</div>
+                    <div class="item-price">$35</div>
+                </div>
+                
+                <!-- Hamburguesa Doble Carne (NUEVA) -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Doble Carne" class="item-image">
+                            </div>
+                            <div class="back">
+                                Dos jugosas carnes de res, queso, pan fresco, lechuga, tomate, cebolla, salsa BBQ
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Hamburguesa c/doble carne</div>
+                    <div class="item-price">$44</div>
+                </div>
+                
+                <!-- Hamburguesa Triple Carne (NUEVA) -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Triple Carne" class="item-image">
+                            </div>
+                            <div class="back">
+                                Tres carnes de res, triple queso, tocino, cebolla caramelizada, pan fresco, salsa especial
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Hamburguesa c/triple carne</div>
+                    <div class="item-price">$54</div>
+                </div>
+        
+        <!-- 
+        **********************************************
+        * SECCIÓN DE BEBIDAS *
+        **********************************************
+        -->
+        <div class="menu-section">
+            <h2 class="section-title">BEBIDAS</h2>
+            <div class="items-container">
+                <!-- Soda Italiana -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <!-- 
+                                **********************************************
+                                * CAMBIAR IMAGEN DE SODA ITALIANA *
+                                **********************************************
+                                -->
+                                <img src="https://speedy.uenicdn.com/cca6ac97-8155-4cce-ac5b-37a9972ca3c7/c750_a/image/upload/v1592336639/business/350f09b3-975f-4121-9228-81e8eadd714b.jpg" alt="Soda Italiana" class="item-image">
+                            </div>
+                            <div class="back">
+                                Refresco artesanal con hielo frape, sabores: Chicle, Cereza, Mora Azul
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Soda Italiana</div>
+                    <div class="item-price">$28</div>
+                </div>
+                
+                <!-- Coca Cola 600ml -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <!-- 
+                                **********************************************
+                                * CAMBIAR IMAGEN DE COCA COLA *
+                                **********************************************
+                                -->
+                                <img src="https://regiofarma.mx/wp-content/uploads/2023/09/e6770385-4e22-4fe8-9ec9-864260010187.jpg" alt="Coca Cola 600ml" class="item-image">
+                            </div>
+                            <div class="back">
+                                Refresco de cola en presentación de 600ml, bien fría
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Coca Cola 600ml</div>
+                    <div class="item-price">$20</div>
+                </div>
+                
+                <!-- Jugo Boing -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <!-- 
+                                **********************************************
+                                * CAMBIAR IMAGEN DE JUGO BOING *
+                                **********************************************
+                                -->
+                                <img src="https://www.digaar.com/admin_digaar/productos/345.jpg" alt="Jugo Boing" class="item-image">
+                            </div>
+                            <div class="back">
+                                Jugo Boing en diversos sabores: mango, guayaba, uva, manzana
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Jugo Boing</div>
+                    <div class="item-price">$9</div>
+                </div>
+                
+                <!-- Michelada -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <!-- 
+                                **********************************************
+                                * CAMBIAR IMAGEN DE MICHELADA *
+                                **********************************************
+                                -->
+                                <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/26787066/1407384851.jpg" alt="Michelada" class="item-image">
+                            </div>
+                            <div class="back">
+                                Cerveza clara u oscura con limón y sal. 1 litro
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Michelada (1L)</div>
+                    <div class="item-price">$60</div>
+                </div>
+                
+                <!-- Azulito -->
+                <div class="menu-item">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <!-- 
+                                **********************************************
+                                * CAMBIAR IMAGEN DE AZULITO *
+                                **********************************************
+                                -->
+                                <img src="https://t3.ftcdn.net/jpg/06/18/89/82/240_F_618898203_eUh5Y75b7rijLKj4DtnU3KY2YzcZNlBS.jpg" alt="Azulito" class="item-image">
+                            </div>
+                            <div class="back">
+                                Bebida refrescante sabor tropical con vodka y color azul. 1 litro
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-name">Azulito (1L)</div>
+                    <div class="item-price">$70</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
