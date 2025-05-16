@@ -5,6 +5,8 @@
     <!-- Configuración de viewport para responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Menú Digital</title>
+    <!-- Icono de Font Awesome para WhatsApp -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /*
         ******************************************************
@@ -25,6 +27,7 @@
             --text-dark: #333; /* Color de texto oscuro */
             --text-gray: #666; /* Color de texto gris */
             --desc-bg: rgba(0, 0, 0, 0.8); /* Fondo de las descripciones */
+            --whatsapp-color: #25D366; /* Color verde de WhatsApp */
 
             /* EFECTOS Y ANIMACIONES */
             --hover-scale: 1.05; /* Escala al hacer hover */
@@ -70,6 +73,35 @@
         
         /* 
         **********************************************
+        * BOTÓN FLOTANTE DE WHATSAPP *
+        **********************************************
+        */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: var(--whatsapp-color);
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+        
+        /* 
+        **********************************************
         * CONTENEDOR PRINCIPAL DEL MENÚ *
         **********************************************
         * Diseño con efecto vidrio esmerilado (glassmorphism)
@@ -98,6 +130,36 @@
             text-shadow: 0 0 10px var(--title-glow), 0 0 20px var(--title-glow);
             margin-bottom: 25px;
             font-size: 2.2rem; /* Tamaño responsivo */
+        }
+        
+        /* 
+        **********************************************
+        * ENLACE DE CONTACTO/ÓRDENES *
+        **********************************************
+        */
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .contact-link i {
+            margin-right: 10px;
+            font-size: 20px;
+            color: var(--whatsapp-color);
         }
         
         /* 
@@ -307,6 +369,14 @@
             .item-price {
                 font-size: 16px;
             }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 30px;
+                right: 30px;
+                font-size: 25px;
+            }
         }
         
         /* Smartphones Medianos (480px) */
@@ -332,6 +402,11 @@
             .item-name {
                 font-size: 14px;
             }
+            
+            .contact-link {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
         }
         
         /* Smartphones Pequeños (360px) */
@@ -344,10 +419,29 @@
                 width: 160px;
                 height: 160px; /* Más grande para mejor visibilidad */
             }
+            
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 22px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 
+    **********************************************
+    * BOTÓN FLOTANTE DE WHATSAPP *
+    **********************************************
+    * Cambiar el número de teléfono en el href
+    * Ejemplo: href="https://wa.me/5215512345678"
+    -->
+    <a href="https://wa.me/5621181453" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
     <!-- 
     **********************************************
     * CONTENEDOR PRINCIPAL *
@@ -355,6 +449,16 @@
     -->
     <div class="menu-container">
         <h1>MENÚ PRINCIPAL</h1>
+        
+        <!-- 
+        **********************************************
+        * ENLACE DE CONTACTO/ÓRDENES *
+        **********************************************
+        * Mismo enlace que el botón flotante
+        -->
+        <a href="https://wa.me/5621181453" class="contact-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> CONTACTO U ÓRDENES
+        </a>
         
         <!-- 
         **********************************************
