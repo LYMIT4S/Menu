@@ -13,7 +13,7 @@
             --secondary-color: #6B6BFF;
             --accent-color: #FFD166;
             --dark-color: #2D2D2D;
-            --light-color: #F7F7F7;
+            --light-color:rgb(255, 255, 255);
             --bg-overlay: rgba(30, 30, 46, 0.9);
             --menu-bg: rgba(255, 255, 255, 0.08);
             --card-bg: rgba(255, 255, 255, 0.95);
@@ -28,6 +28,11 @@
             --neon-green: #39ff14;
             --neon-red: #ff3131;
             --neon-blue: #1F51FF;
+            --neon-white: #ffffff;
+
+             --gradient-green-white: linear-gradient(135deg, var(--neon-green) 0%, var(--neon-white) 100%);
+             --gradient-red-white: linear-gradient(135deg, var(--neon-red) 0%, var(--neon-white) 100%);
+             --gradient-blue-white: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-white) 100%);
         }
 
         * {
@@ -479,6 +484,7 @@
         }
         
         .cart-item-quantity {
+            color: var(--dark-color);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -1317,16 +1323,15 @@
             }
             
             const whatsappNumber = '5621181453';
-            let message = '¡Hola! Quiero hacer el siguiente pedido:\n\n';
+            let message = '¡Hola guapetón! Quiero hacer el siguiente pedido:\n\n';
             
             cart.forEach(item => {
-                message += `- ${item.name} (${item.quantity}x ${item.displayPrice})\n`;
+                message += `° ${item.name} (${item.quantity}x ${item.displayPrice})\n`;
             });
             
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             message += `\nTotal: $${totalPrice}\n\n`;
-            message += 'Dirección de entrega: [Por favor indique su dirección]\n';
-            message += 'Forma de pago: [Efectivo/Tarjeta]';
+            message += '-----Por favor antes de enviar verifica que tu pedido, cantidades y total en $ esté correctamente-----\n';
             
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
