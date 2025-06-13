@@ -29,11 +29,12 @@
             --neon-red: #ff3131;
             --neon-blue: #1F51FF;
             --neon-white: #ffffff;
-
-             --gradient-green-white: linear-gradient(135deg, var(--neon-green) 0%, var(--neon-white) 100%);
-             --gradient-red-white: linear-gradient(135deg, var(--neon-red) 0%, var(--neon-white) 100%);
-             --gradient-blue-white: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-white) 100%);
+            --border-speed: 3s;
         }
+        @keyframes borderChase {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
 
         * {
             box-sizing: border-box;
@@ -137,6 +138,55 @@
         }
         
         /* BOTÓN DE CONTACTO CON EFECTO NEON VERDE */
+
+        .contact-link {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none !important; /* Quitamos el borde original */
+}
+
+.contact-link::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        var(--neon-green),
+        var(--neon-white),
+        var(--neon-green)
+    );
+    background-size: 200% auto;
+    border-radius: 50px;
+    z-index: -1;
+    animation: borderChase var(--border-speed) linear infinite;
+    filter: blur(3px);
+    opacity: 0.8;
+}
+
+.contact-link::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-white),
+        transparent
+    );
+    background-size: 200% auto;
+    border-radius: 50px;
+    z-index: -1;
+    animation: borderChase calc(var(--border-speed)/1.5) linear infinite;
+    mix-blend-mode: overlay;
+}
+        
         .contact-link {
             display: inline-flex;
             align-items: center;
@@ -156,7 +206,7 @@
             position: relative;
             z-index: 1;
             border: 2px solid var(--neon-green);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
         }
         
         .contact-link:hover {
@@ -627,6 +677,53 @@
             }
             
             /* BOTONES DE MENÚ DESPLEGABLE CON NEON */
+            .menu-toggle-btn.food-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none !important;
+}
+
+.menu-toggle-btn.food-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        var(--neon-red),
+        var(--neon-white),
+        var(--neon-red)
+    );
+    background-size: 200% auto;
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderChase var(--border-speed) linear infinite;
+    filter: blur(3px);
+    opacity: 0.8;
+}
+
+.menu-toggle-btn.food-btn::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-white),
+        transparent
+    );
+    background-size: 200% auto;
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderChase calc(var(--border-speed)/1.5) linear infinite;
+    mix-blend-mode: overlay;
+}
             .menu-toggle-buttons {
                 display: flex;
                 justify-content: space-between;
@@ -663,6 +760,53 @@
                 box-shadow: 0 0 20px rgba(255, 49, 49, 0.9);
             }
             
+            .menu-toggle-btn.drinks-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none !important;
+}
+
+.menu-toggle-btn.drinks-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        var(--neon-blue),
+        var(--neon-white),
+        var(--neon-blue)
+    );
+    background-size: 200% auto;
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderChase var(--border-speed) linear infinite;
+    filter: blur(3px);
+    opacity: 0.8;
+}
+
+.menu-toggle-btn.drinks-btn::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-white),
+        transparent
+    );
+    background-size: 200% auto;
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderChase calc(var(--border-speed)/1.5) linear infinite;
+    mix-blend-mode: overlay;
+}
             .menu-toggle-btn.drinks-btn {
                 background: var(--secondary-color);
                 color: white;
