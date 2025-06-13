@@ -1,3 +1,1507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Menú</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* COLORES PRINCIPALES */
+            --primary-color: #FF6B6B;
+            --secondary-color: #6B6BFF;
+            --accent-color: #FFD166;
+            --dark-color: #2D2D2D;
+            --light-color:rgb(255, 255, 255);
+            --bg-overlay: rgba(30, 30, 46, 0.9);
+            --menu-bg: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #333;
+            --text-light: #fff;
+            --text-gray: #666;
+            --whatsapp-color: #25D366;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            /* Colores neon */
+            --neon-green: #39ff14;
+            --neon-red: #ff3131;
+            --neon-blue: #1F51FF;
+            --neon-white: #ffffff;
+            --border-speed: 3s;
+        }
+        @keyframes borderChase {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: 
+                linear-gradient(var(--bg-overlay)),
+                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-light);
+            padding: 15px;
+            min-height: 100vh;
+            -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* BOTÓN FLOTANTE DE WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--whatsapp-color);
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+            background-color: #128C7E;
+            animation: none;
+        }
+        
+        /* CONTENEDOR PRINCIPAL */
+        .menu-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--menu-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* CABECERA */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header h1:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: -10px;
+            left: 20%;
+            border-radius: 3px;
+        }
+        
+        .header .subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+        
+        /* BOTÓN DE CONTACTO CON EFECTO NEON VERDE */
+
+        .contact-link {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none !important; 
+}
+
+.contact-link::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        var(--neon-green),
+        var(--neon-white),
+        var(--neon-green)
+    );
+    background-size: 200% auto;
+    border-radius: 50px;
+    z-index: -1;
+    animation: borderChase var(--border-speed) linear infinite;
+    filter: blur(3px);
+    opacity: 0.8;
+}
+
+.contact-link::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-white),
+        transparent
+    );
+    background-size: 200% auto;
+    border-radius: 50px;
+    z-index: -1;
+    animation: borderChase calc(var(--border-speed)/1.5) linear infinite;
+    mix-blend-mode: overlay;
+}
+        
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto;
+            background: var(--whatsapp-color);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+            border: 2px solid var(--neon-green);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+        }
+        
+        .contact-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(38, 255, 0, 0.9);
+        }
+        
+        .contact-link i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* SECCIÓN DE UBICACIÓN */
+        .location-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .location-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        .location-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* SECCIONES */
+        .menu-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .section-title i {
+            margin-right: 12px;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+        }
+        
+        /* CONTENEDOR DE PRODUCTOS */
+        .items-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        /* TARJETAS DE PRODUCTOS */
+        .menu-item {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .menu-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        /* IMAGEN DEL PRODUCTO */
+        .item-image-container {
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .item-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover .item-image {
+            transform: scale(1.1);
+        }
+        
+        /* INFO DEL PRODUCTO */
+        .item-info {
+            padding: 15px;
+            position: relative;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .item-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            background-color: rgba(255, 107, 107, 0.1);
+            padding: 2px 8px;
+            border-radius: 20px;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+        
+        .item-description {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-top: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        
+        .tag {
+            background-color: rgba(107, 107, 255, 0.1);
+            color: var(--secondary-color);
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+        
+        /* Botón para agregar al carrito */
+        .add-to-cart-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            z-index: 2;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        /* ================ */
+        /* CARRITO DE COMPRAS */
+        /* ================ */
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary-color);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: var(--card-bg);
+            z-index: 9999;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-container.open {
+            transform: translateX(0);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .cart-item-quantity {
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .remove-item {
+            margin-left: 15px;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .remove-item:hover {
+            transform: scale(1.2);
+        }
+        
+        .cart-total {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .cart-actions {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .checkout-btn {
+            background-color: var(--whatsapp-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+        
+        .clear-cart-btn {
+            background-color: var(--light-color);
+            color: var(--text-gray);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .clear-cart-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-gray);
+        }
+        
+        .empty-cart i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        /* ==================== */
+        /* DISEÑO PARA SMARTPHONE */
+        /* ==================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+                background: var(--dark-color);
+            }
+            
+            .menu-container {
+                padding: 0;
+                border-radius: 0;
+                background: transparent;
+                backdrop-filter: none;
+                box-shadow: none;
+                border: none;
+            }
+            
+            .header {
+                padding: 15px;
+                background: var(--bg-overlay);
+                margin-bottom: 0;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header .subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .contact-link {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 10px auto;
+            }
+            
+            .location-section {
+                margin: 15px;
+                padding: 15px;
+            }
+            
+            /* BOTONES DE MENÚ DESPLEGABLE CON NEON */
+            .menu-toggle-btn.food-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none !important;
+}
+
+.menu-toggle-btn.food-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        var(--neon-red),
+        var(--neon-white),
+        var(--neon-red)
+    );
+    background-size: 200% auto;
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderChase var(--border-speed) linear infinite;
+    filter: blur(3px);
+    opacity: 0.8;
+}
+
+.menu-toggle-btn.food-btn::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-white),
+        transparent
+    );
+    background-size: 200% auto;
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderChase calc(var(--border-speed)/1.5) linear infinite;
+    mix-blend-mode: overlay;
+}
+            .menu-toggle-buttons {
+                display: flex;
+                justify-content: space-between;
+                padding: 0 15px;
+                margin-bottom: 15px;
+            }
+            
+            .menu-toggle-btn {
+                flex: 1;
+                max-width: 48%;
+                padding: 12px;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                cursor: pointer;
+                transition: var(--transition);
+                position: relative;
+                z-index: 1;
+                text-shadow: 0 0 5px rgb(0, 0, 0);
+            }
+            
+            .menu-toggle-btn.food-btn {
+                background: var(--primary-color);
+                color: white;
+                border: 2px solid var(--neon-red);
+                box-shadow: 0 0 10px rgba(255, 49, 49, 0.7);
+            }
+            
+            .menu-toggle-btn.food-btn:hover {
+                box-shadow: 0 0 20px rgba(255, 49, 49, 0.9);
+            }
+            
+            .menu-toggle-btn.drinks-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none !important;
+}
+
+.menu-toggle-btn.drinks-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        var(--neon-blue),
+        var(--neon-white),
+        var(--neon-blue)
+    );
+    background-size: 200% auto;
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderChase var(--border-speed) linear infinite;
+    filter: blur(3px);
+    opacity: 0.8;
+}
+
+.menu-toggle-btn.drinks-btn::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-white),
+        transparent
+    );
+    background-size: 200% auto;
+    border-radius: 8px;
+    z-index: -1;
+    animation: borderChase calc(var(--border-speed)/1.5) linear infinite;
+    mix-blend-mode: overlay;
+}
+            .menu-toggle-btn.drinks-btn {
+                background: var(--secondary-color);
+                color: white;
+                border: 2px solid var(--neon-blue);
+                box-shadow: 0 0 10px rgba(31, 81, 255, 0.7);
+            }
+            
+            .menu-toggle-btn.drinks-btn:hover {
+                box-shadow: 0 0 20px rgba(31, 81, 255, 0.9);
+            }
+            
+            .menu-toggle-btn i {
+                font-size: 1.2rem;
+            }
+            
+            /* MENÚS DESPLEGABLES */
+            .mobile-menu-container {
+                position: fixed;
+                top: 0;
+                width: 85%;
+                height: 100%;
+                background: var(--dark-color);
+                z-index: 1000;
+                overflow-y: auto;
+                transition: transform 0.3s ease;
+                padding: 15px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            }
+            
+            .mobile-menu-container.food-menu {
+                left: 0;
+                transform: translateX(-100%);
+            }
+            
+            .mobile-menu-container.drinks-menu {
+                right: 0;
+                transform: translateX(100%);
+            }
+            
+            .mobile-menu-container.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .mobile-menu-title {
+                font-size: 1.5rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .mobile-menu-title i {
+                color: var(--accent-color);
+            }
+            
+            .close-menu-btn {
+                background: none;
+                border: none;
+                color: var(--text-light);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .mobile-items-container {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .mobile-menu-item {
+                background-color: var(--card-bg);
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: var(--shadow);
+                position: relative;
+            }
+            
+            .mobile-menu-item .item-image-container {
+                height: 150px;
+            }
+            
+            .mobile-menu-item .item-info {
+                padding: 12px;
+            }
+            
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+            
+            .overlay.active {
+                opacity: 1;
+                pointer-events: all;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .footer {
+                padding: 15px;
+                background: var(--bg-overlay);
+                margin-top: 0;
+            }
+            
+            /* Ajustes para el carrito en móvil */
+            .cart-container {
+                width: 100%;
+                max-width: none;
+            }
+            
+            .cart-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+                top: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .items-container {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+        
+        /* AJUSTES PARA PANTALLAS MUY PEQUEÑAS */
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .header .subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .contact-link {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+            
+            .location-text {
+                font-size: 0.85rem;
+            }
+            
+            .menu-toggle-btn {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/5621181453" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Icono del carrito -->
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+    
+    <!-- Contenedor del carrito -->
+    <div class="cart-container" id="cartContainer">
+        <div class="cart-header">
+            <h2 class="cart-title">Tú pedido</h2>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Los productos se agregarán aquí dinámicamente -->
+        </div>
+        
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">$0</span>
+        </div>
+        
+        <div class="cart-actions">
+            <button class="checkout-btn" id="checkoutBtn">
+                <i class="fab fa-whatsapp"></i> Finalizar pedido
+            </button>
+            <button class="clear-cart-btn" id="clearCartBtn">Vaciar carrito</button>
+        </div>
+    </div>
+    
+    <div class="menu-container">
+        <div class="header">
+            <h1>MENÚ PRINCIPAL</h1>
+            <p class="subtitle">Lo bueno se vende solo, y solo lo vendo yo</p>
+            <a href="https://wa.me/5621181453" class="contact-link" target="_blank">
+                <i class="fab fa-whatsapp"></i> HACER PEDIDO
+            </a>
+        </div>
+        
+        <!-- Sección de ubicación -->
+        <div class="location-section">
+            <div class="location-title">Nos encontramos en:</div>
+            <div class="location-text">
+                Priv. Ignacio R Alatorre<br>
+                Tiendita "La Yoyis"<br>
+                CP: 54459<br>
+                Villa Nicolás Romero
+            </div>
+        </div>
+        
+        <!-- Botones para desplegar menús -->
+        <div class="menu-toggle-buttons">
+            <button class="menu-toggle-btn food-btn" onclick="toggleMenu('food')">
+                <i class="fas fa-utensils"></i> COMIDA
+            </button>
+            <button class="menu-toggle-btn drinks-btn" onclick="toggleMenu('drinks')">
+                <i class="fas fa-glass-cheers"></i> BEBIDAS
+            </button>
+        </div>
+        
+        <!-- Overlay para cerrar menús -->
+        <div class="overlay" id="overlay" onclick="closeAllMenus()"></div>
+        
+        <!-- Menú de comida (desplegable izquierda) -->
+        <div class="mobile-menu-container food-menu" id="foodMenu">
+            <div class="mobile-menu-header">
+                <h2 class="mobile-menu-title">
+                    <i class="fas fa-utensils"></i> COMIDA
+                </h2>
+                <button class="close-menu-btn" onclick="closeMenu('food')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-items-container">
+                <!-- Hot Dogs -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://www.cinin.es/upload/stblog/1/14/25/1425large.jpg" alt="Hot Dogs" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Hot dogs
+                            <span class="item-price">3x$25</span>
+                        </div>
+                        <div class="item-description">
+                            Pan suave, salchicha, cebolla, jitomate, jalapeños, mayonesa, mostaza, catsup
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Popular</span>
+                            <span class="tag">Rápido</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hot dogs', 25, '3x$25')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+                <!-- Hamburguesa sencilla -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Sencilla" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Hamburguesa sencilla
+                            <span class="item-price">$25</span>
+                        </div>
+                        <div class="item-description">
+                            Carne de res, pan fresco, aderezo, jitomate, jalapeños y cebolla
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Recomendado</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hamburguesa sencilla', 25, '$25')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <!-- Hamburguesa hawaiana -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://static.wixstatic.com/media/8da1cd_12d691629f9b41048280caadf1c2c389.png/v1/fill/w_625,h_625,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/8da1cd_12d691629f9b41048280caadf1c2c389.png" alt="Hamburguesa con Queso" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Hamburguesa Hawaiana
+                            <span class="item-price">$35</span>
+                        </div>
+                        <div class="item-description">
+                            Carne de res, jamón, piña, queso, pan fresco, aderezo, jitomate, jalapeños y cebolla
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Queso</span>
+                            <span class="tag">Popular</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hamburguesa Hawaiana', 35, '$35')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <!-- Choriqueso -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://cdn7.kiwilimon.com/recetaimagen/38733/640x426/49808.jpg.webp" alt="Hamburguesa Hawaiana" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Choriqueso
+                            <span class="item-price">$35</span>
+                        </div>
+                        <div class="item-description">
+                            Chorizo, queso fundido, carne de res, pan fresco, aderezo, jitomate, jalapeños y cebolla
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Exótico</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Choriqueso', 35, '$35')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <!-- Hamburguesa c/doble carne -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://www.clarin.com/img/2024/04/08/h7F2MFEHg_1256x620__1.jpg" alt="Hamburguesa Especial" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Hamburguesa c/doble carne
+                            <span class="item-price">$44</span>
+                        </div>
+                        <div class="item-description">
+                            Dos jugosas carnes de res, queso americano, pan fresco, aderezo, jitomate, jalapeños y cebolla
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Especial</span>
+                            <span class="tag">Completo</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hamburguesa c/doble carne', 44, '$44')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+                <!-- Hamburguesa c/triple carne -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://mcdonalds.es/api/cms/images/Z4mynpbqstJ99jG__Hero-Cheeseburger-Triple_desk.png?auto=compress&fm=webp" alt="Hamburguesa Triple Carne" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Hamburguesa c/triple carne
+                            <span class="item-price">$54</span>
+                        </div>
+                        <div class="item-description">
+                            Tres carnes de res, queso americano, pan fresco, aderezo, jitomate, jalapeños y cebolla
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">XXL</span>
+                            <span class="tag">Desafío</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hamburguesa c/triple carne', 54, '$54')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menú de bebidas (desplegable derecha) -->
+        <div class="mobile-menu-container drinks-menu" id="drinksMenu">
+            <div class="mobile-menu-header">
+                <h2 class="mobile-menu-title">
+                    <i class="fas fa-glass-cheers"></i> BEBIDAS
+                </h2>
+                <button class="close-menu-btn" onclick="closeMenu('drinks')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-items-container">
+                <!-- Soda Italiana -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://amaxali.odoomorelia.com/web/image/product.product/952/image_1024/Soda%20Italiana?unique=1810aa2" alt="Soda Italiana" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Soda Italiana
+                            <span class="item-price">$28</span>
+                        </div>
+                        <div class="item-description">
+                            Refresco artesanal con hielo frape, sabores: Chicle, Cereza, Mora Azul
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Refrescante</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Soda Italiana', 28, '$28')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <!-- Coca Cola 600ml -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://d1zc67o3u1epb0.cloudfront.net/media/catalog/product/5/6/560.jpg?width=700&height=700&store=mayorista&image-type=image" alt="Coca Cola 600ml" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Coca Cola 600ml
+                            <span class="item-price">$20</span>
+                        </div>
+                        <div class="item-description">
+                            Refresco de cola en presentación de 600ml, bien fría
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Clásico</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Coca Cola 600ml', 20, '$20')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <!-- Jugo Boing -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://teamaranto.b-cdn.net/teamaranto_img/PRODUCTOSWEBP/124_9c9.webp" alt="Jugo Boing" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Jugo Boing
+                            <span class="item-price">$9</span>
+                        </div>
+                        <div class="item-description">
+                            Jugo Boing en diversos sabores: mango, guayaba, uva, manzana...
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Familiar</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Jugo Boing', 9, '$9')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <!-- Michelada -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_2X_794419-MLM75697621877_042024-F.webp" alt="Michelada" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Michelada (1L)
+                            <span class="item-price">$60</span>
+                        </div>
+                        <div class="item-description">
+                            Cerveza clara u oscura con limón y sal. 1 litro
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Alcohol</span>
+                            <span class="tag">Popular</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Michelada (1L)', 60, '$60')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <!-- Azulito -->
+                <div class="mobile-menu-item">
+                    <div class="item-image-container">
+                        <img src="https://www.nacion321.com/resizer/v2/ET6MRLXN6BDEDHTMGG7UJOASUA.jpg?smart=true&auth=5f266a80a460188c646cacdf6f272c5f1fe820dbbd663a23809053f63aef0b5d&width=1200&height=675&quality=85" alt="Azulito" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            Azulito (1L)
+                            <span class="item-price">$70</span>
+                        </div>
+                        <div class="item-description">
+                            Bebida refrescante sabor tropical con vodka y color azul. 1 litro
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Alcohol</span>
+                            <span class="tag">Exótico</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Azulito (1L)', 70, '$70')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025, S.A de C.V. Todos los derechos reservados.</p>
+            <p>Come frutas y verduras...y una hamburguesa</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Carrito de compras
+        let cart = [];
+        
+        // Elementos del DOM
+        const cartIcon = document.getElementById('cartIcon');
+        const cartContainer = document.getElementById('cartContainer');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const clearCartBtn = document.getElementById('clearCartBtn');
+        
+        // Funciones del carrito
+        function addToCart(event, name, price, displayPrice) {
+            event.stopPropagation(); // Evita que el clic se propague al contenedor del item
+            
+            // Buscar si el producto ya está en el carrito
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name,
+                    price,
+                    displayPrice,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showCart();
+            
+            // Mostrar notificación
+            showNotification(`${name} agregado al carrito`);
+        }
+        
+        function updateCart() {
+            // Actualizar la lista de productos
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Tu carrito está vacío</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach((item, index) => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.displayPrice}</div>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="decreaseQuantity(${index})">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="increaseQuantity(${index})">+</button>
+                        </div>
+                        <div class="remove-item" onclick="removeItem(${index})">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    `;
+                    cartItems.appendChild(cartItemElement);
+                });
+            }
+            
+            // Actualizar contador y total
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCount.textContent = totalCount;
+            cartTotal.textContent = `$${totalPrice}`;
+            
+            // Guardar en localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        
+        function increaseQuantity(index) {
+            cart[index].quantity += 1;
+            updateCart();
+        }
+        
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCart();
+        }
+        
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+        
+        function clearCart() {
+            cart = [];
+            updateCart();
+            closeCart();
+        }
+        
+        function showCart() {
+            cartContainer.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hideCart() {
+            cartContainer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            
+            const whatsappNumber = '5621181453';
+            let message = '¡Hola guapetón! Quiero hacer el siguiente pedido:\n\n';
+            
+            cart.forEach(item => {
+                message += `° ${item.name} (${item.quantity}x ${item.displayPrice})\n`;
+            });
+            
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\nTotal: $${totalPrice}\n\n`;
+            message += '-----Por favor antes de enviar verifica que tu pedido, cantidades y total en $ esté correctamente-----\n';
+            
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Opcional: limpiar el carrito después del pedido
+         clearCart();
+        }
+        
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
         // Estilos para la notificación
         const notificationStyles = document.createElement('style');
         notificationStyles.textContent = `
