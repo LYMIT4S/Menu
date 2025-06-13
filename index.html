@@ -11,7 +11,7 @@
             /* COLORES PRINCIPALES */
             --primary-color: #FF6B6B;
             --secondary-color: #6B6BFF;
-            --accent-color:#FFD166;
+            --accent-color: #FFD166;
             --dark-color: #2D2D2D;
             --light-color:rgb(255, 255, 255);
             --bg-overlay: rgba(30, 30, 46, 0.9);
@@ -56,14 +56,14 @@
             position: relative;
         }
         
-        /* BOTÓN FLOTANTE DE WHATSAPP */
-        .whatsapp-float {
+        /* BOTÓN FLOTANTE DEL CARRITO */
+        .cart-float {
             position: fixed;
             width: 60px;
             height: 60px;
             bottom: 20px;
             right: 20px;
-            background-color: var(--whatsapp-color);
+            background-color: var(--primary-color);
             color: #FFF;
             border-radius: 50%;
             text-align: center;
@@ -75,6 +75,7 @@
             justify-content: center;
             transition: var(--transition);
             animation: pulse 2s infinite;
+            cursor: pointer;
         }
         
         @keyframes pulse {
@@ -83,9 +84,9 @@
             100% { transform: scale(1); }
         }
         
-        .whatsapp-float:hover {
+        .cart-float:hover {
             transform: scale(1.1) rotate(5deg);
-            background-color: #128C7E;
+            background-color: var(--secondary-color);
             animation: none;
         }
         
@@ -423,30 +424,6 @@
         /* ================ */
         /* CARRITO DE COMPRAS */
         /* ================ */
-        .cart-icon {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .cart-icon:hover {
-            transform: scale(1.1);
-            background-color: var(--secondary-color);
-        }
-        
         .cart-count {
             position: absolute;
             top: -5px;
@@ -919,7 +896,7 @@
                 pointer-events: all;
             }
             
-            .whatsapp-float {
+            .cart-float {
                 width: 50px;
                 height: 50px;
                 font-size: 25px;
@@ -937,14 +914,6 @@
             .cart-container {
                 width: 100%;
                 max-width: none;
-            }
-            
-            .cart-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
-                top: 15px;
-                right: 15px;
             }
         }
         
@@ -969,7 +938,7 @@
                 font-size: 0.85rem;
             }
             
-            .whatsapp-float {
+            .cart-float {
                 width: 45px;
                 height: 45px;
                 font-size: 22px;
@@ -987,13 +956,8 @@
     </style>
 </head>
 <body>
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/5621181453" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <!-- Icono del carrito -->
-    <div class="cart-icon" id="cartIcon">
+    <!-- Botón flotante del carrito -->
+    <div class="cart-float" id="cartFloat">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count" id="cartCount">0</span>
     </div>
@@ -1001,7 +965,7 @@
     <!-- Contenedor del carrito -->
     <div class="cart-container" id="cartContainer">
         <div class="cart-header">
-            <h2 class="cart-title">Tú pedido</h2>
+            <h2 class="cart-title">Tu Pedido</h2>
             <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
         </div>
         
@@ -1016,9 +980,9 @@
         
         <div class="cart-actions">
             <button class="checkout-btn" id="checkoutBtn">
-                <i class="fab fa-whatsapp"></i> Finalizar pedido
+                <i class="fab fa-whatsapp"></i> Finalizar Pedido
             </button>
-            <button class="clear-cart-btn" id="clearCartBtn">Vaciar carrito</button>
+            <button class="clear-cart-btn" id="clearCartBtn">Vaciar Carrito</button>
         </div>
     </div>
     
@@ -1347,7 +1311,7 @@
         let cart = [];
         
         // Elementos del DOM
-        const cartIcon = document.getElementById('cartIcon');
+        const cartFloat = document.getElementById('cartFloat');
         const cartContainer = document.getElementById('cartContainer');
         const closeCart = document.getElementById('closeCart');
         const cartItems = document.getElementById('cartItems');
@@ -1481,7 +1445,7 @@
             window.open(whatsappUrl, '_blank');
             
             // Opcional: limpiar el carrito después del pedido
-         clearCart();
+            // clearCart();
         }
         
         function showNotification(message) {
@@ -1527,7 +1491,7 @@
         document.head.appendChild(notificationStyles);
         
         // Event listeners
-        cartIcon.addEventListener('click', showCart);
+        cartFloat.addEventListener('click', showCart);
         closeCart.addEventListener('click', hideCart);
         checkoutBtn.addEventListener('click', checkout);
         clearCartBtn.addEventListener('click', clearCart);
@@ -1550,7 +1514,7 @@
                 
                 // Cerrar carrito si se hace clic fuera
                 if (!event.target.closest('.cart-container') && 
-                    !event.target.closest('.cart-icon') &&
+                    !event.target.closest('.cart-float') &&
                     cartContainer.classList.contains('open')) {
                     hideCart();
                 }
