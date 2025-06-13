@@ -137,7 +137,7 @@
             margin-bottom: 15px;
         }
         
-        /* BOTÓN DE CONTACTO */
+        /* BOTÓN DE CONTACTO CON EFECTO NEON */
         .contact-link {
             display: inline-flex;
             align-items: center;
@@ -150,10 +150,36 @@
             color: white;
             font-weight: 600;
             transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
             border: none;
             cursor: pointer;
             font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: linear-gradient(45deg, 
+                #ff0000, #ff7300, #fffb00, #48ff00, 
+                #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            border-radius: 50px;
+            opacity: 0.8;
+            animation: neonBorder 8s linear infinite;
+        }
+        
+        @keyframes neonBorder {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
         }
         
         .contact-link:hover {
@@ -164,6 +190,29 @@
         .contact-link i {
             margin-right: 8px;
             font-size: 1.1rem;
+        }
+        
+        /* SECCIÓN DE UBICACIÓN */
+        .location-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .location-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        .location-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         
         /* SECCIONES */
@@ -369,46 +418,12 @@
                 margin: 10px auto;
             }
             
-            /* SECCIÓN DE PRODUCTOS DESTACADOS */
-            .featured-section {
-                width: 100%;
-                overflow-x: auto;
-                padding: 10px 0;
-                background: var(--bg-overlay);
-                margin-bottom: 10px;
-                scroll-snap-type: x mandatory;
-                display: flex;
-                -webkit-overflow-scrolling: touch;
+            .location-section {
+                margin: 15px;
+                padding: 15px;
             }
             
-            .featured-container {
-                display: flex;
-                padding: 0 10px;
-                gap: 10px;
-            }
-            
-            .featured-item {
-                min-width: 85%;
-                scroll-snap-align: start;
-                background-color: var(--card-bg);
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: var(--shadow);
-            }
-            
-            .featured-item .item-image-container {
-                height: 180px;
-            }
-            
-            .featured-item .item-info {
-                padding: 12px;
-            }
-            
-            .featured-item .item-name {
-                font-size: 1.1rem;
-            }
-            
-            /* BOTONES DE MENÚ DESPLEGABLE */
+            /* BOTONES DE MENÚ DESPLEGABLE CON NEON */
             .menu-toggle-buttons {
                 display: flex;
                 justify-content: space-between;
@@ -430,6 +445,26 @@
                 gap: 8px;
                 cursor: pointer;
                 transition: var(--transition);
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+            }
+            
+            .menu-toggle-btn::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                z-index: -1;
+                background: linear-gradient(45deg, 
+                    #ff0000, #ff7300, #fffb00, #48ff00, 
+                    #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+                background-size: 400%;
+                border-radius: 8px;
+                opacity: 0.8;
+                animation: neonBorder 8s linear infinite;
             }
             
             .menu-toggle-btn.food-btn {
@@ -584,8 +619,13 @@
                 font-size: 22px;
             }
             
-            .featured-item {
-                min-width: 90%;
+            .location-text {
+                font-size: 0.85rem;
+            }
+            
+            .menu-toggle-btn {
+                font-size: 0.9rem;
+                padding: 10px;
             }
         }
     </style>
@@ -605,10 +645,14 @@
             </a>
         </div>
         
-        <!-- Sección de productos destacados (aparecerán aleatorios) -->
-        <div class="featured-section">
-            <div class="featured-container" id="featuredItems">
-                <!-- Los productos destacados se generarán con JavaScript -->
+        <!-- Sección de ubicación -->
+        <div class="location-section">
+            <div class="location-title">Nos encontramos en:</div>
+            <div class="location-text">
+                Priv. Ignacio R Alatorre<br>
+                Tiendita "La Yoyis"<br>
+                CP: 54459<br>
+                Villa Nicolás Romero
             </div>
         </div>
         
@@ -880,133 +924,6 @@
     </div>
     
     <script>
-        // Datos de los productos
-        const foodItems = [
-            {
-                name: "Hot dogs",
-                price: "3x$25",
-                description: "Pan suave, salchicha, cebolla, jitomate, jalapeños, mayonesa, mostaza, catsup",
-                image: "https://www.cinin.es/upload/stblog/1/14/25/1425large.jpg",
-                tags: ["Popular", "Rápido"]
-            },
-            {
-                name: "Hamburguesa sencilla",
-                price: "$25",
-                description: "Carne de res, pan fresco, aderezo, jitomate, jalapeños y cebolla",
-                image: "https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg",
-                tags: ["Recomendado"]
-            },
-            {
-                name: "Hamburguesa Hawaiana",
-                price: "$35",
-                description: "Carne de res, jamón, piña, queso, pan fresco, aderezo, jitomate, jalapeños y cebolla",
-                image: "https://static.wixstatic.com/media/8da1cd_12d691629f9b41048280caadf1c2c389.png/v1/fill/w_625,h_625,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/8da1cd_12d691629f9b41048280caadf1c2c389.png",
-                tags: ["Queso", "Popular"]
-            },
-            {
-                name: "Choriqueso",
-                price: "$35",
-                description: "Chorizo, queso fundido, carne de res, pan fresco, aderezo, jitomate, jalapeños y cebolla",
-                image: "https://cdn7.kiwilimon.com/recetaimagen/38733/640x426/49808.jpg.webp",
-                tags: ["Exótico"]
-            },
-            {
-                name: "Hamburguesa c/doble carne",
-                price: "$44",
-                description: "Dos jugosas carnes de res, queso americano, pan fresco, aderezo, jitomate, jalapeños y cebolla",
-                image: "https://www.clarin.com/img/2024/04/08/h7F2MFEHg_1256x620__1.jpg",
-                tags: ["Especial", "Completo"]
-            },
-            {
-                name: "Hamburguesa c/triple carne",
-                price: "$54",
-                description: "Tres carnes de res, queso americano, pan fresco, aderezo, jitomate, jalapeños y cebolla",
-                image: "https://mcdonalds.es/api/cms/images/Z4mynpbqstJ99jG__Hero-Cheeseburger-Triple_desk.png?auto=compress&fm=webp",
-                tags: ["XXL", "Desafío"]
-            }
-        ];
-
-        const drinksItems = [
-            {
-                name: "Soda Italiana",
-                price: "$28",
-                description: "Refresco artesanal con hielo frape, sabores: Chicle, Cereza, Mora Azul",
-                image: "https://amaxali.odoomorelia.com/web/image/product.product/952/image_1024/Soda%20Italiana?unique=1810aa2",
-                tags: ["Refrescante"]
-            },
-            {
-                name: "Coca Cola 600ml",
-                price: "$20",
-                description: "Refresco de cola en presentación de 600ml, bien fría",
-                image: "https://d1zc67o3u1epb0.cloudfront.net/media/catalog/product/5/6/560.jpg?width=700&height=700&store=mayorista&image-type=image",
-                tags: ["Clásico"]
-            },
-            {
-                name: "Jugo Boing",
-                price: "$9",
-                description: "Jugo Boing en diversos sabores: mango, guayaba, uva, manzana...",
-                image: "https://teamaranto.b-cdn.net/teamaranto_img/PRODUCTOSWEBP/124_9c9.webp",
-                tags: ["Familiar"]
-            },
-            {
-                name: "Michelada (1L)",
-                price: "$60",
-                description: "Cerveza clara u oscura con limón y sal. 1 litro",
-                image: "https://http2.mlstatic.com/D_NQ_NP_2X_794419-MLM75697621877_042024-F.webp",
-                tags: ["Alcohol", "Popular"]
-            },
-            {
-                name: "Azulito (1L)",
-                price: "$70",
-                description: "Bebida refrescante sabor tropical con vodka y color azul. 1 litro",
-                image: "https://www.nacion321.com/resizer/v2/ET6MRLXN6BDEDHTMGG7UJOASUA.jpg?smart=true&auth=5f266a80a460188c646cacdf6f272c5f1fe820dbbd663a23809053f63aef0b5d&width=1200&height=675&quality=85",
-                tags: ["Alcohol", "Exótico"]
-            }
-        ];
-
-        // Función para seleccionar productos aleatorios
-        function getRandomItems(array, count) {
-            const shuffled = [...array].sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, count);
-        }
-
-        // Función para generar productos destacados
-        function generateFeaturedItems() {
-            const featuredContainer = document.getElementById('featuredItems');
-            featuredContainer.innerHTML = '';
-            
-            // Combinar todos los productos
-            const allItems = [...foodItems, ...drinksItems];
-            // Seleccionar 3-4 productos aleatorios
-            const randomItems = getRandomItems(allItems, Math.floor(Math.random() * 2) + 3);
-            
-            randomItems.forEach(item => {
-                const featuredItem = document.createElement('div');
-                featuredItem.className = 'featured-item';
-                featuredItem.onclick = () => orderItem(item.name);
-                
-                featuredItem.innerHTML = `
-                    <div class="item-image-container">
-                        <img src="${item.image}" alt="${item.name}" class="item-image">
-                    </div>
-                    <div class="item-info">
-                        <div class="item-name">
-                            ${item.name}
-                            <span class="item-price">${item.price}</span>
-                        </div>
-                        <div class="item-description">
-                            ${item.description}
-                        </div>
-                        <div class="item-tags">
-                            ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                        </div>
-                    </div>
-                `;
-                
-                featuredContainer.appendChild(featuredItem);
-            });
-        }
-
         // Función para manejar los clics en los items del menú
         function orderItem(itemName) {
             const whatsappNumber = '5621181453';
@@ -1045,8 +962,6 @@
 
         // Inicializar la página
         document.addEventListener('DOMContentLoaded', function() {
-            generateFeaturedItems();
-            
             // Cerrar menús al hacer clic fuera
             document.addEventListener('click', function(event) {
                 if (!event.target.closest('.mobile-menu-container') && 
