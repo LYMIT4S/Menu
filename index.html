@@ -56,14 +56,14 @@
             position: relative;
         }
         
-        /* BOTÓN FLOTANTE DE WHATSAPP */
-        .whatsapp-float {
+        /* BOTÓN FLOTANTE DEL CARRITO */
+        .cart-float {
             position: fixed;
             width: 60px;
             height: 60px;
             bottom: 20px;
             right: 20px;
-            background-color: var(--whatsapp-color);
+            background-color: var(--primary-color);
             color: #FFF;
             border-radius: 50%;
             text-align: center;
@@ -83,9 +83,9 @@
             100% { transform: scale(1); }
         }
         
-        .whatsapp-float:hover {
+        .cart-float:hover {
             transform: scale(1.1) rotate(5deg);
-            background-color: #128C7E;
+            background-color: var(--secondary-color);
             animation: none;
         }
         
@@ -919,7 +919,7 @@
                 pointer-events: all;
             }
             
-            .whatsapp-float {
+            .cart-float {
                 width: 50px;
                 height: 50px;
                 font-size: 25px;
@@ -969,7 +969,7 @@
                 font-size: 0.85rem;
             }
             
-            .whatsapp-float {
+            .cart-float {
                 width: 45px;
                 height: 45px;
                 font-size: 22px;
@@ -987,13 +987,8 @@
     </style>
 </head>
 <body>
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/5621181453" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <!-- Icono del carrito -->
-    <div class="cart-icon" id="cartIcon">
+    <!-- Botón flotante del carrito -->
+    <div class="cart-float" id="cartIcon">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count" id="cartCount">0</span>
     </div>
@@ -1001,7 +996,7 @@
     <!-- Contenedor del carrito -->
     <div class="cart-container" id="cartContainer">
         <div class="cart-header">
-            <h2 class="cart-title">Tú pedido</h2>
+            <h2 class="cart-title">Tu Pedido</h2>
             <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
         </div>
         
@@ -1016,9 +1011,9 @@
         
         <div class="cart-actions">
             <button class="checkout-btn" id="checkoutBtn">
-                <i class="fab fa-whatsapp"></i> Finalizar pedido
+                <i class="fab fa-whatsapp"></i> Finalizar Pedido
             </button>
-            <button class="clear-cart-btn" id="clearCartBtn">Vaciar carrito</button>
+            <button class="clear-cart-btn" id="clearCartBtn">Vaciar Carrito</button>
         </div>
     </div>
     
@@ -1481,7 +1476,7 @@
             window.open(whatsappUrl, '_blank');
             
             // Opcional: limpiar el carrito después del pedido
-         clearCart();
+            // clearCart();
         }
         
         function showNotification(message) {
