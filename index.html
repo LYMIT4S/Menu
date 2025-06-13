@@ -312,6 +312,31 @@
             font-weight: 500;
         }
         
+        /* Botón para agregar al carrito */
+        .add-to-cart-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            z-index: 2;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
         /* FOOTER */
         .footer {
             text-align: center;
@@ -338,6 +363,218 @@
         .social-links a:hover {
             color: var(--accent-color);
             transform: translateY(-3px);
+        }
+        
+        /* ================ */
+        /* CARRITO DE COMPRAS */
+        /* ================ */
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary-color);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: var(--card-bg);
+            z-index: 9999;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-container.open {
+            transform: translateX(0);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .remove-item {
+            margin-left: 15px;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .remove-item:hover {
+            transform: scale(1.2);
+        }
+        
+        .cart-total {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .cart-actions {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .checkout-btn {
+            background-color: var(--whatsapp-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+        
+        .clear-cart-btn {
+            background-color: var(--light-color);
+            color: var(--text-gray);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .clear-cart-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-gray);
+        }
+        
+        .empty-cart i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
         }
         
         /* ==================== */
@@ -503,6 +740,7 @@
                 border-radius: 10px;
                 overflow: hidden;
                 box-shadow: var(--shadow);
+                position: relative;
             }
             
             .mobile-menu-item .item-image-container {
@@ -543,6 +781,20 @@
                 padding: 15px;
                 background: var(--bg-overlay);
                 margin-top: 0;
+            }
+            
+            /* Ajustes para el carrito en móvil */
+            .cart-container {
+                width: 100%;
+                max-width: none;
+            }
+            
+            .cart-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+                top: 15px;
+                right: 15px;
             }
         }
         
@@ -590,6 +842,36 @@
         <i class="fab fa-whatsapp"></i>
     </a>
     
+    <!-- Icono del carrito -->
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+    
+    <!-- Contenedor del carrito -->
+    <div class="cart-container" id="cartContainer">
+        <div class="cart-header">
+            <h2 class="cart-title">Tu Pedido</h2>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Los productos se agregarán aquí dinámicamente -->
+        </div>
+        
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">$0</span>
+        </div>
+        
+        <div class="cart-actions">
+            <button class="checkout-btn" id="checkoutBtn">
+                <i class="fab fa-whatsapp"></i> Finalizar Pedido
+            </button>
+            <button class="clear-cart-btn" id="clearCartBtn">Vaciar Carrito</button>
+        </div>
+    </div>
+    
     <div class="menu-container">
         <div class="header">
             <h1>MENÚ PRINCIPAL</h1>
@@ -636,7 +918,7 @@
             
             <div class="mobile-items-container">
                 <!-- Hot Dogs -->
-                <div class="mobile-menu-item" onclick="orderItem('Hot Dogs')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://www.cinin.es/upload/stblog/1/14/25/1425large.jpg" alt="Hot Dogs" class="item-image">
                     </div>
@@ -653,10 +935,13 @@
                             <span class="tag">Rápido</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hot dogs', 25, '3x$25')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
 
                 <!-- Hamburguesa sencilla -->
-                <div class="mobile-menu-item" onclick="orderItem('Hamburguesa sencilla')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Sencilla" class="item-image">
                     </div>
@@ -672,10 +957,13 @@
                             <span class="tag">Recomendado</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hamburguesa sencilla', 25, '$25')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
                 
                 <!-- Hamburguesa hawaiana -->
-                <div class="mobile-menu-item" onclick="orderItem('Hamburguesa Hawaiana')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://static.wixstatic.com/media/8da1cd_12d691629f9b41048280caadf1c2c389.png/v1/fill/w_625,h_625,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/8da1cd_12d691629f9b41048280caadf1c2c389.png" alt="Hamburguesa con Queso" class="item-image">
                     </div>
@@ -692,10 +980,13 @@
                             <span class="tag">Popular</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hamburguesa Hawaiana', 35, '$35')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
                 
                 <!-- Choriqueso -->
-                <div class="mobile-menu-item" onclick="orderItem('Choriqueso')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://cdn7.kiwilimon.com/recetaimagen/38733/640x426/49808.jpg.webp" alt="Hamburguesa Hawaiana" class="item-image">
                     </div>
@@ -711,10 +1002,13 @@
                             <span class="tag">Exótico</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Choriqueso', 35, '$35')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
                 
                 <!-- Hamburguesa c/doble carne -->
-                <div class="mobile-menu-item" onclick="orderItem('Hamburguesa c/doble carne')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://www.clarin.com/img/2024/04/08/h7F2MFEHg_1256x620__1.jpg" alt="Hamburguesa Especial" class="item-image">
                     </div>
@@ -731,10 +1025,13 @@
                             <span class="tag">Completo</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hamburguesa c/doble carne', 44, '$44')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
 
                 <!-- Hamburguesa c/triple carne -->
-                <div class="mobile-menu-item" onclick="orderItem('Hamburguesa c/triple carne')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://mcdonalds.es/api/cms/images/Z4mynpbqstJ99jG__Hero-Cheeseburger-Triple_desk.png?auto=compress&fm=webp" alt="Hamburguesa Triple Carne" class="item-image">
                     </div>
@@ -751,6 +1048,9 @@
                             <span class="tag">Desafío</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Hamburguesa c/triple carne', 54, '$54')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -768,7 +1068,7 @@
             
             <div class="mobile-items-container">
                 <!-- Soda Italiana -->
-                <div class="mobile-menu-item" onclick="orderItem('Soda Italiana')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://amaxali.odoomorelia.com/web/image/product.product/952/image_1024/Soda%20Italiana?unique=1810aa2" alt="Soda Italiana" class="item-image">
                     </div>
@@ -784,10 +1084,13 @@
                             <span class="tag">Refrescante</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Soda Italiana', 28, '$28')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
                 
                 <!-- Coca Cola 600ml -->
-                <div class="mobile-menu-item" onclick="orderItem('Coca Cola 600ml')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://d1zc67o3u1epb0.cloudfront.net/media/catalog/product/5/6/560.jpg?width=700&height=700&store=mayorista&image-type=image" alt="Coca Cola 600ml" class="item-image">
                     </div>
@@ -803,10 +1106,13 @@
                             <span class="tag">Clásico</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Coca Cola 600ml', 20, '$20')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
                 
                 <!-- Jugo Boing -->
-                <div class="mobile-menu-item" onclick="orderItem('Jugo Boing')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://teamaranto.b-cdn.net/teamaranto_img/PRODUCTOSWEBP/124_9c9.webp" alt="Jugo Boing" class="item-image">
                     </div>
@@ -822,10 +1128,13 @@
                             <span class="tag">Familiar</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Jugo Boing', 9, '$9')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
                 
                 <!-- Michelada -->
-                <div class="mobile-menu-item" onclick="orderItem('Michelada (1L)')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://http2.mlstatic.com/D_NQ_NP_2X_794419-MLM75697621877_042024-F.webp" alt="Michelada" class="item-image">
                     </div>
@@ -842,10 +1151,13 @@
                             <span class="tag">Popular</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Michelada (1L)', 60, '$60')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
                 
                 <!-- Azulito -->
-                <div class="mobile-menu-item" onclick="orderItem('Azulito (1L)')">
+                <div class="mobile-menu-item">
                     <div class="item-image-container">
                         <img src="https://www.nacion321.com/resizer/v2/ET6MRLXN6BDEDHTMGG7UJOASUA.jpg?smart=true&auth=5f266a80a460188c646cacdf6f272c5f1fe820dbbd663a23809053f63aef0b5d&width=1200&height=675&quality=85" alt="Azulito" class="item-image">
                     </div>
@@ -862,6 +1174,9 @@
                             <span class="tag">Exótico</span>
                         </div>
                     </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(event, 'Azulito (1L)', 70, '$70')">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -878,14 +1193,220 @@
     </div>
     
     <script>
-        // Función para manejar los clics en los items del menú
-        function orderItem(itemName) {
-            const whatsappNumber = '5621181453';
-            const message = `Hola, me gustaría pedir: ${itemName}. ¿Podrían darme más información?`;
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        // Carrito de compras
+        let cart = [];
+        
+        // Elementos del DOM
+        const cartIcon = document.getElementById('cartIcon');
+        const cartContainer = document.getElementById('cartContainer');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const clearCartBtn = document.getElementById('clearCartBtn');
+        
+        // Funciones del carrito
+        function addToCart(event, name, price, displayPrice) {
+            event.stopPropagation(); // Evita que el clic se propague al contenedor del item
             
-            window.open(whatsappUrl, '_blank');
+            // Buscar si el producto ya está en el carrito
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name,
+                    price,
+                    displayPrice,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showCart();
+            
+            // Mostrar notificación
+            showNotification(`${name} agregado al carrito`);
         }
+        
+        function updateCart() {
+            // Actualizar la lista de productos
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Tu carrito está vacío</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach((item, index) => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.displayPrice}</div>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="decreaseQuantity(${index})">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="increaseQuantity(${index})">+</button>
+                        </div>
+                        <div class="remove-item" onclick="removeItem(${index})">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    `;
+                    cartItems.appendChild(cartItemElement);
+                });
+            }
+            
+            // Actualizar contador y total
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCount.textContent = totalCount;
+            cartTotal.textContent = `$${totalPrice}`;
+            
+            // Guardar en localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        
+        function increaseQuantity(index) {
+            cart[index].quantity += 1;
+            updateCart();
+        }
+        
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCart();
+        }
+        
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+        
+        function clearCart() {
+            cart = [];
+            updateCart();
+            closeCart();
+        }
+        
+        function showCart() {
+            cartContainer.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hideCart() {
+            cartContainer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            
+            const whatsappNumber = '5621181453';
+            let message = '¡Hola! Quiero hacer el siguiente pedido:\n\n';
+            
+            cart.forEach(item => {
+                message += `- ${item.name} (${item.quantity}x ${item.displayPrice})\n`;
+            });
+            
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\nTotal: $${totalPrice}\n\n`;
+            message += 'Dirección de entrega: [Por favor indique su dirección]\n';
+            message += 'Forma de pago: [Efectivo/Tarjeta]';
+            
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Opcional: limpiar el carrito después del pedido
+            // clearCart();
+        }
+        
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Estilos para la notificación
+        const notificationStyles = document.createElement('style');
+        notificationStyles.textContent = `
+            .notification {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: var(--secondary-color);
+                color: white;
+                padding: 12px 24px;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 10000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .notification.show {
+                opacity: 1;
+            }
+        `;
+        document.head.appendChild(notificationStyles);
+        
+        // Event listeners
+        cartIcon.addEventListener('click', showCart);
+        closeCart.addEventListener('click', hideCart);
+        checkoutBtn.addEventListener('click', checkout);
+        clearCartBtn.addEventListener('click', clearCart);
+        
+        // Cargar carrito desde localStorage al iniciar
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+            
+            // Cerrar menús al hacer clic fuera
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.mobile-menu-container') && 
+                    !event.target.closest('.menu-toggle-btn') &&
+                    document.getElementById('overlay').classList.contains('active')) {
+                    closeAllMenus();
+                }
+                
+                // Cerrar carrito si se hace clic fuera
+                if (!event.target.closest('.cart-container') && 
+                    !event.target.closest('.cart-icon') &&
+                    cartContainer.classList.contains('open')) {
+                    hideCart();
+                }
+            });
+        });
 
         // Funciones para manejar los menús desplegables
         function toggleMenu(menuType) {
@@ -913,18 +1434,6 @@
             document.getElementById('overlay').classList.remove('active');
             document.body.style.overflow = '';
         }
-
-        // Inicializar la página
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cerrar menús al hacer clic fuera
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.mobile-menu-container') && 
-                    !event.target.closest('.menu-toggle-btn') &&
-                    document.getElementById('overlay').classList.contains('active')) {
-                    closeAllMenus();
-                }
-            });
-        });
     </script>
 </body>
 </html>
