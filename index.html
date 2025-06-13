@@ -329,24 +329,217 @@
             transform: translateY(-3px);
         }
         
-        /* MEDIA QUERIES PARA SMARTPHONE */
+        /* ==================== */
+        /* DISEÑO PARA SMARTPHONE */
+        /* ==================== */
         @media (max-width: 768px) {
+            body {
+                padding: 0;
+                background: var(--dark-color);
+            }
+            
             .menu-container {
+                padding: 0;
+                border-radius: 0;
+                background: transparent;
+                backdrop-filter: none;
+                box-shadow: none;
+                border: none;
+            }
+            
+            .header {
                 padding: 15px;
-                border-radius: 12px;
+                background: var(--bg-overlay);
+                margin-bottom: 0;
             }
             
             .header h1 {
                 font-size: 1.8rem;
+                animation: none;
+                text-shadow: none;
             }
             
-            .items-container {
-                grid-template-columns: 1fr;
+            .header .subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .contact-link {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 10px auto;
+            }
+            
+            /* SECCIÓN DE PRODUCTOS DESTACADOS */
+            .featured-section {
+                width: 100%;
+                overflow-x: auto;
+                padding: 10px 0;
+                background: var(--bg-overlay);
+                margin-bottom: 10px;
+                scroll-snap-type: x mandatory;
+                display: flex;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .featured-container {
+                display: flex;
+                padding: 0 10px;
+                gap: 10px;
+            }
+            
+            .featured-item {
+                min-width: 85%;
+                scroll-snap-align: start;
+                background-color: var(--card-bg);
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: var(--shadow);
+            }
+            
+            .featured-item .item-image-container {
+                height: 180px;
+            }
+            
+            .featured-item .item-info {
+                padding: 12px;
+            }
+            
+            .featured-item .item-name {
+                font-size: 1.1rem;
+            }
+            
+            /* BOTONES DE MENÚ DESPLEGABLE */
+            .menu-toggle-buttons {
+                display: flex;
+                justify-content: space-between;
+                padding: 0 15px;
+                margin-bottom: 15px;
+            }
+            
+            .menu-toggle-btn {
+                flex: 1;
+                max-width: 48%;
+                padding: 12px;
+                border: none;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+            
+            .menu-toggle-btn.food-btn {
+                background: var(--primary-color);
+                color: white;
+            }
+            
+            .menu-toggle-btn.drinks-btn {
+                background: var(--secondary-color);
+                color: white;
+            }
+            
+            .menu-toggle-btn i {
+                font-size: 1.2rem;
+            }
+            
+            /* MENÚS DESPLEGABLES */
+            .mobile-menu-container {
+                position: fixed;
+                top: 0;
+                width: 85%;
+                height: 100%;
+                background: var(--dark-color);
+                z-index: 1000;
+                overflow-y: auto;
+                transition: transform 0.3s ease;
+                padding: 15px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            }
+            
+            .mobile-menu-container.food-menu {
+                left: 0;
+                transform: translateX(-100%);
+            }
+            
+            .mobile-menu-container.drinks-menu {
+                right: 0;
+                transform: translateX(100%);
+            }
+            
+            .mobile-menu-container.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .mobile-menu-title {
+                font-size: 1.5rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .mobile-menu-title i {
+                color: var(--accent-color);
+            }
+            
+            .close-menu-btn {
+                background: none;
+                border: none;
+                color: var(--text-light);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .mobile-items-container {
+                display: flex;
+                flex-direction: column;
                 gap: 15px;
             }
             
-            .item-image-container {
-                height: 160px;
+            .mobile-menu-item {
+                background-color: var(--card-bg);
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: var(--shadow);
+            }
+            
+            .mobile-menu-item .item-image-container {
+                height: 150px;
+            }
+            
+            .mobile-menu-item .item-info {
+                padding: 12px;
+            }
+            
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+            
+            .overlay.active {
+                opacity: 1;
+                pointer-events: all;
             }
             
             .whatsapp-float {
@@ -357,28 +550,10 @@
                 right: 15px;
             }
             
-            .contact-link {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            
-            .section-title {
-                font-size: 1.4rem;
-            }
-            
-            .section-title i {
-                font-size: 1.2rem;
-            }
-            
-            .item-name {
-                font-size: 1rem;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .item-price {
-                margin-left: 0;
-                margin-top: 5px;
+            .footer {
+                padding: 15px;
+                background: var(--bg-overlay);
+                margin-top: 0;
             }
         }
         
@@ -390,10 +565,6 @@
         
         /* AJUSTES PARA PANTALLAS MUY PEQUEÑAS */
         @media (max-width: 400px) {
-            body {
-                padding: 10px;
-            }
-            
             .header h1 {
                 font-size: 1.6rem;
             }
@@ -411,6 +582,10 @@
                 width: 45px;
                 height: 45px;
                 font-size: 22px;
+            }
+            
+            .featured-item {
+                min-width: 90%;
             }
         }
     </style>
@@ -430,15 +605,40 @@
             </a>
         </div>
         
-        <!-- SECCIÓN DE COMIDA -->
-        <div class="menu-section">
-            <h2 class="section-title">
+        <!-- Sección de productos destacados (aparecerán aleatorios) -->
+        <div class="featured-section">
+            <div class="featured-container" id="featuredItems">
+                <!-- Los productos destacados se generarán con JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Botones para desplegar menús -->
+        <div class="menu-toggle-buttons">
+            <button class="menu-toggle-btn food-btn" onclick="toggleMenu('food')">
                 <i class="fas fa-utensils"></i> COMIDA
-            </h2>
-            <div class="items-container">
-
+            </button>
+            <button class="menu-toggle-btn drinks-btn" onclick="toggleMenu('drinks')">
+                <i class="fas fa-glass-cheers"></i> BEBIDAS
+            </button>
+        </div>
+        
+        <!-- Overlay para cerrar menús -->
+        <div class="overlay" id="overlay" onclick="closeAllMenus()"></div>
+        
+        <!-- Menú de comida (desplegable izquierda) -->
+        <div class="mobile-menu-container food-menu" id="foodMenu">
+            <div class="mobile-menu-header">
+                <h2 class="mobile-menu-title">
+                    <i class="fas fa-utensils"></i> COMIDA
+                </h2>
+                <button class="close-menu-btn" onclick="closeMenu('food')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-items-container">
                 <!-- Hot Dogs -->
-                <div class="menu-item" onclick="orderItem('Hot Dogs')">
+                <div class="mobile-menu-item" onclick="orderItem('Hot Dogs')">
                     <div class="item-image-container">
                         <img src="https://www.cinin.es/upload/stblog/1/14/25/1425large.jpg" alt="Hot Dogs" class="item-image">
                     </div>
@@ -458,7 +658,7 @@
                 </div>
 
                 <!-- Hamburguesa sencilla -->
-                <div class="menu-item" onclick="orderItem('Hamburguesa sencilla')">
+                <div class="mobile-menu-item" onclick="orderItem('Hamburguesa sencilla')">
                     <div class="item-image-container">
                         <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg" alt="Hamburguesa Sencilla" class="item-image">
                     </div>
@@ -477,7 +677,7 @@
                 </div>
                 
                 <!-- Hamburguesa hawaiana -->
-                <div class="menu-item" onclick="orderItem('Hamburguesa Hawaiana')">
+                <div class="mobile-menu-item" onclick="orderItem('Hamburguesa Hawaiana')">
                     <div class="item-image-container">
                         <img src="https://static.wixstatic.com/media/8da1cd_12d691629f9b41048280caadf1c2c389.png/v1/fill/w_625,h_625,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/8da1cd_12d691629f9b41048280caadf1c2c389.png" alt="Hamburguesa con Queso" class="item-image">
                     </div>
@@ -497,7 +697,7 @@
                 </div>
                 
                 <!-- Choriqueso -->
-                <div class="menu-item" onclick="orderItem('Choriqueso')">
+                <div class="mobile-menu-item" onclick="orderItem('Choriqueso')">
                     <div class="item-image-container">
                         <img src="https://cdn7.kiwilimon.com/recetaimagen/38733/640x426/49808.jpg.webp" alt="Hamburguesa Hawaiana" class="item-image">
                     </div>
@@ -516,7 +716,7 @@
                 </div>
                 
                 <!-- Hamburguesa c/doble carne -->
-                <div class="menu-item" onclick="orderItem('Hamburguesa c/doble carne')">
+                <div class="mobile-menu-item" onclick="orderItem('Hamburguesa c/doble carne')">
                     <div class="item-image-container">
                         <img src="https://www.clarin.com/img/2024/04/08/h7F2MFEHg_1256x620__1.jpg" alt="Hamburguesa Especial" class="item-image">
                     </div>
@@ -536,7 +736,7 @@
                 </div>
 
                 <!-- Hamburguesa c/triple carne -->
-                <div class="menu-item" onclick="orderItem('Hamburguesa c/triple carne')">
+                <div class="mobile-menu-item" onclick="orderItem('Hamburguesa c/triple carne')">
                     <div class="item-image-container">
                         <img src="https://mcdonalds.es/api/cms/images/Z4mynpbqstJ99jG__Hero-Cheeseburger-Triple_desk.png?auto=compress&fm=webp" alt="Hamburguesa Triple Carne" class="item-image">
                     </div>
@@ -557,14 +757,20 @@
             </div>
         </div>
         
-        <!-- SECCIÓN DE BEBIDAS -->
-        <div class="menu-section">
-            <h2 class="section-title">
-                <i class="fas fa-glass-cheers"></i> BEBIDAS
-            </h2>
-            <div class="items-container">
+        <!-- Menú de bebidas (desplegable derecha) -->
+        <div class="mobile-menu-container drinks-menu" id="drinksMenu">
+            <div class="mobile-menu-header">
+                <h2 class="mobile-menu-title">
+                    <i class="fas fa-glass-cheers"></i> BEBIDAS
+                </h2>
+                <button class="close-menu-btn" onclick="closeMenu('drinks')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-items-container">
                 <!-- Soda Italiana -->
-                <div class="menu-item" onclick="orderItem('Soda Italiana')">
+                <div class="mobile-menu-item" onclick="orderItem('Soda Italiana')">
                     <div class="item-image-container">
                         <img src="https://amaxali.odoomorelia.com/web/image/product.product/952/image_1024/Soda%20Italiana?unique=1810aa2" alt="Soda Italiana" class="item-image">
                     </div>
@@ -583,7 +789,7 @@
                 </div>
                 
                 <!-- Coca Cola 600ml -->
-                <div class="menu-item" onclick="orderItem('Coca Cola 600ml')">
+                <div class="mobile-menu-item" onclick="orderItem('Coca Cola 600ml')">
                     <div class="item-image-container">
                         <img src="https://d1zc67o3u1epb0.cloudfront.net/media/catalog/product/5/6/560.jpg?width=700&height=700&store=mayorista&image-type=image" alt="Coca Cola 600ml" class="item-image">
                     </div>
@@ -602,7 +808,7 @@
                 </div>
                 
                 <!-- Jugo Boing -->
-                <div class="menu-item" onclick="orderItem('Jugo Boing')">
+                <div class="mobile-menu-item" onclick="orderItem('Jugo Boing')">
                     <div class="item-image-container">
                         <img src="https://teamaranto.b-cdn.net/teamaranto_img/PRODUCTOSWEBP/124_9c9.webp" alt="Jugo Boing" class="item-image">
                     </div>
@@ -621,7 +827,7 @@
                 </div>
                 
                 <!-- Michelada -->
-                <div class="menu-item" onclick="orderItem('Michelada (1L)')">
+                <div class="mobile-menu-item" onclick="orderItem('Michelada (1L)')">
                     <div class="item-image-container">
                         <img src="https://http2.mlstatic.com/D_NQ_NP_2X_794419-MLM75697621877_042024-F.webp" alt="Michelada" class="item-image">
                     </div>
@@ -641,7 +847,7 @@
                 </div>
                 
                 <!-- Azulito -->
-                <div class="menu-item" onclick="orderItem('Azulito (1L)')">
+                <div class="mobile-menu-item" onclick="orderItem('Azulito (1L)')">
                     <div class="item-image-container">
                         <img src="https://www.nacion321.com/resizer/v2/ET6MRLXN6BDEDHTMGG7UJOASUA.jpg?smart=true&auth=5f266a80a460188c646cacdf6f272c5f1fe820dbbd663a23809053f63aef0b5d&width=1200&height=675&quality=85" alt="Azulito" class="item-image">
                     </div>
@@ -674,6 +880,133 @@
     </div>
     
     <script>
+        // Datos de los productos
+        const foodItems = [
+            {
+                name: "Hot dogs",
+                price: "3x$25",
+                description: "Pan suave, salchicha, cebolla, jitomate, jalapeños, mayonesa, mostaza, catsup",
+                image: "https://www.cinin.es/upload/stblog/1/14/25/1425large.jpg",
+                tags: ["Popular", "Rápido"]
+            },
+            {
+                name: "Hamburguesa sencilla",
+                price: "$25",
+                description: "Carne de res, pan fresco, aderezo, jitomate, jalapeños y cebolla",
+                image: "https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_640.jpg",
+                tags: ["Recomendado"]
+            },
+            {
+                name: "Hamburguesa Hawaiana",
+                price: "$35",
+                description: "Carne de res, jamón, piña, queso, pan fresco, aderezo, jitomate, jalapeños y cebolla",
+                image: "https://static.wixstatic.com/media/8da1cd_12d691629f9b41048280caadf1c2c389.png/v1/fill/w_625,h_625,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/8da1cd_12d691629f9b41048280caadf1c2c389.png",
+                tags: ["Queso", "Popular"]
+            },
+            {
+                name: "Choriqueso",
+                price: "$35",
+                description: "Chorizo, queso fundido, carne de res, pan fresco, aderezo, jitomate, jalapeños y cebolla",
+                image: "https://cdn7.kiwilimon.com/recetaimagen/38733/640x426/49808.jpg.webp",
+                tags: ["Exótico"]
+            },
+            {
+                name: "Hamburguesa c/doble carne",
+                price: "$44",
+                description: "Dos jugosas carnes de res, queso americano, pan fresco, aderezo, jitomate, jalapeños y cebolla",
+                image: "https://www.clarin.com/img/2024/04/08/h7F2MFEHg_1256x620__1.jpg",
+                tags: ["Especial", "Completo"]
+            },
+            {
+                name: "Hamburguesa c/triple carne",
+                price: "$54",
+                description: "Tres carnes de res, queso americano, pan fresco, aderezo, jitomate, jalapeños y cebolla",
+                image: "https://mcdonalds.es/api/cms/images/Z4mynpbqstJ99jG__Hero-Cheeseburger-Triple_desk.png?auto=compress&fm=webp",
+                tags: ["XXL", "Desafío"]
+            }
+        ];
+
+        const drinksItems = [
+            {
+                name: "Soda Italiana",
+                price: "$28",
+                description: "Refresco artesanal con hielo frape, sabores: Chicle, Cereza, Mora Azul",
+                image: "https://amaxali.odoomorelia.com/web/image/product.product/952/image_1024/Soda%20Italiana?unique=1810aa2",
+                tags: ["Refrescante"]
+            },
+            {
+                name: "Coca Cola 600ml",
+                price: "$20",
+                description: "Refresco de cola en presentación de 600ml, bien fría",
+                image: "https://d1zc67o3u1epb0.cloudfront.net/media/catalog/product/5/6/560.jpg?width=700&height=700&store=mayorista&image-type=image",
+                tags: ["Clásico"]
+            },
+            {
+                name: "Jugo Boing",
+                price: "$9",
+                description: "Jugo Boing en diversos sabores: mango, guayaba, uva, manzana...",
+                image: "https://teamaranto.b-cdn.net/teamaranto_img/PRODUCTOSWEBP/124_9c9.webp",
+                tags: ["Familiar"]
+            },
+            {
+                name: "Michelada (1L)",
+                price: "$60",
+                description: "Cerveza clara u oscura con limón y sal. 1 litro",
+                image: "https://http2.mlstatic.com/D_NQ_NP_2X_794419-MLM75697621877_042024-F.webp",
+                tags: ["Alcohol", "Popular"]
+            },
+            {
+                name: "Azulito (1L)",
+                price: "$70",
+                description: "Bebida refrescante sabor tropical con vodka y color azul. 1 litro",
+                image: "https://www.nacion321.com/resizer/v2/ET6MRLXN6BDEDHTMGG7UJOASUA.jpg?smart=true&auth=5f266a80a460188c646cacdf6f272c5f1fe820dbbd663a23809053f63aef0b5d&width=1200&height=675&quality=85",
+                tags: ["Alcohol", "Exótico"]
+            }
+        ];
+
+        // Función para seleccionar productos aleatorios
+        function getRandomItems(array, count) {
+            const shuffled = [...array].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Función para generar productos destacados
+        function generateFeaturedItems() {
+            const featuredContainer = document.getElementById('featuredItems');
+            featuredContainer.innerHTML = '';
+            
+            // Combinar todos los productos
+            const allItems = [...foodItems, ...drinksItems];
+            // Seleccionar 3-4 productos aleatorios
+            const randomItems = getRandomItems(allItems, Math.floor(Math.random() * 2) + 3);
+            
+            randomItems.forEach(item => {
+                const featuredItem = document.createElement('div');
+                featuredItem.className = 'featured-item';
+                featuredItem.onclick = () => orderItem(item.name);
+                
+                featuredItem.innerHTML = `
+                    <div class="item-image-container">
+                        <img src="${item.image}" alt="${item.name}" class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">
+                            ${item.name}
+                            <span class="item-price">${item.price}</span>
+                        </div>
+                        <div class="item-description">
+                            ${item.description}
+                        </div>
+                        <div class="item-tags">
+                            ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                featuredContainer.appendChild(featuredItem);
+            });
+        }
+
         // Función para manejar los clics en los items del menú
         function orderItem(itemName) {
             const whatsappNumber = '5621181453';
@@ -682,6 +1015,47 @@
             
             window.open(whatsappUrl, '_blank');
         }
+
+        // Funciones para manejar los menús desplegables
+        function toggleMenu(menuType) {
+            const menu = document.getElementById(`${menuType}Menu`);
+            const overlay = document.getElementById('overlay');
+            
+            menu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu(menuType) {
+            const menu = document.getElementById(`${menuType}Menu`);
+            const overlay = document.getElementById('overlay');
+            
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeAllMenus() {
+            document.querySelectorAll('.mobile-menu-container').forEach(menu => {
+                menu.classList.remove('active');
+            });
+            document.getElementById('overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            generateFeaturedItems();
+            
+            // Cerrar menús al hacer clic fuera
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.mobile-menu-container') && 
+                    !event.target.closest('.menu-toggle-btn') &&
+                    document.getElementById('overlay').classList.contains('active')) {
+                    closeAllMenus();
+                }
+            });
+        });
     </script>
 </body>
 </html>
